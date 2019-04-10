@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  nginx-php:
+    image: "sindria-nginx-php-${PHP_VERSION}:${IMAGE_TAG}"
+    build:
+      # TODO: Rivedere posizioni files
+      context: ../
+      args:
+        - HOST_USER_UID=${HOST_USER_UID}
+        - APP_CODE_PATH=${APP_CODE_PATH}
+        - PHP_VERSION=${NGINX_PHP_VERSION}

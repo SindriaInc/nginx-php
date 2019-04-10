@@ -1,3 +1,3 @@
-## nginx-php Docker image
+## Sindria nginx-php Docker image
 
 WIP

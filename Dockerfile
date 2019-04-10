@@ -3,6 +3,7 @@ FROM ubuntu:18.04
 
 ARG HOST_USER_UID
 ARG PHP_VERSION
+ARG APP_CODE_PATH
 
 LABEL \
 	name="sindria's PHP-FPM ${PHP_VERSION} Image" \
@@ -12,10 +13,7 @@ LABEL \
 
 ENV DEBIAN_FRONTEND="noninteractive" \
 	SINDRIA_USER="sindria" \
-	SINDRIA_USER_HOME="/home/sindria" \
-	SINDRIA_APP_CODE_PATH="/var/www/app" \
-	SINDRIA_HOST_USER_UID=${SINDRIA_HOST_USER_UID} \
-	SINDRIA_PHP_VERSION=${PHP_VERSION}
+	SINDRIA_USER_HOME="/home/sindria"
 
 RUN apt-get update
 RUN apt-get dist-upgrade -y
@@ -27,8 +25,8 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # Adding sindria user user
-RUN useradd ${SINDRIA_USER} -u ${SINDRIA_HOST_USER_UID} -d ${SINDRIA_USER_HOME} -s /bin/bash
-RUN groupmod ${SINDRIA_USER} -g ${SINDRIA_HOST_USER_UID}
+RUN useradd ${SINDRIA_USER} -u ${HOST_USER_UID} -d ${SINDRIA_USER_HOME} -s /bin/bash
+RUN groupmod ${SINDRIA_USER} -g ${HOST_USER_UID}
 RUN mkdir -p ${SINDRIA_USER_HOME}/bin/installers
 COPY ./installers/* ${SINDRIA_USER_HOME}/bin/installers
 RUN mkdir -p ${SINDRIA_USER_HOME}/config
@@ -66,9 +64,9 @@ COPY supervisor/supervisor.conf /etc/supervisor/supervisor.conf
 COPY supervisor/*.conf /etc/supervisor/conf.d/
 
 # Setting up volume
-RUN mkdir -p ${SINDRIA_APP_CODE_PATH}
-RUN chown -R ${SINDRIA_USER}:${SINDRIA_USER} ${SINDRIA_APP_CODE_PATH}
-VOLUME ${SINDRIA_APP_CODE_PATH}
+RUN mkdir -p ${APP_CODE_PATH}
+RUN chown -R ${SINDRIA_USER}:${SINDRIA_USER} ${APP_CODE_PATH}
+VOLUME ${APP_CODE_PATH}
 
 # Add and execute startup command
 COPY ./startup.sh /startup.sh
