@@ -28,7 +28,5 @@ chown root:root /etc/cron.d/*
 chmod 644 /etc/cron.d/*
 
 chown -R sindria:sindria /var/www/app
-# Launch composer install
-#su - sindria -s /bin/bash -c 'cd /var/www/app; composer install --optimize-autoloader --no-dev'
 
 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf

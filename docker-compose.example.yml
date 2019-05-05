@@ -1,0 +1,19 @@
+version: '3.7'
+
+# Change PHP_VERSION with the needed PHP version (5.6 7.0 7.1 7.2 7.3)
+# Change env with "prod" or "dev"
+services:
+  nginx-php:
+    image: "sindria/nginx-php-PHP_VERSION:2.0.0-ENV"
+    container_name: "example.org-backend"
+    environment:
+      - VIRTUAL_HOST=${APP_DOMAIN}
+    volumes:
+      - "/app/path/on/host:/var/www/app"
+      - "/config/path/on/host:/home/sindria/config"
+    hostname: "example.org-backend.local"
+    networks:
+      default:
+        ipv4_address: "172.16.1.5"
+        aliases:
+          - "example.org-backend.local"
