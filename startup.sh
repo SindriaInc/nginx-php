@@ -7,8 +7,8 @@ echo -e "\n# Hostname for gateway" >> /etc/hosts
 echo -e "${CONTAINER_GATEWAY}\tdocker.host.internal\n" >> /etc/hosts
 
 # Configuring email relay
-sed -i -e -r "s|rewriteDomain=([\w\.\-]+)|rewriteDomain=${SINDRIA_APP_DOMAIN}|g" /etc/ssmtp/ssmtp.conf
-sed -i -e -r "s|hostname=([\w\.\-]+)|hostname=${SINDRIA_APP_DOMAIN}|g" /etc/ssmtp/ssmtp.conf
+sed -i -e -r "s|rewriteDomain=([\w\.\-]+)|rewriteDomain=${VIRTUAL_HOST}|g" /etc/ssmtp/ssmtp.conf
+sed -i -e -r "s|hostname=([\w\.\-]+)|hostname=${VIRTUAL_HOST}|g" /etc/ssmtp/ssmtp.conf
 
 # Adding variables to php-fpm pool configuration
 sed -i -e "s|\[@@POOL_NAME@@\]|\[${HOSTNAME}-php-fpm-pool\]|g" /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf

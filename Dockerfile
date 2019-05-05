@@ -14,7 +14,9 @@ LABEL \
 
 ENV DEBIAN_FRONTEND="noninteractive" \
 	SINDRIA_USER="sindria" \
-	SINDRIA_USER_HOME="/home/sindria"
+	SINDRIA_USER_HOME="/home/sindria" \
+	PHP_VERSION=${PHP_VERSION} \
+	PHP_PM_MAX_CHILDREN=16
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends aptitude apt-utils software-properties-common && \
