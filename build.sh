@@ -15,7 +15,7 @@ if [[ -z "$3" ]]; then
     exit 1
 fi
 
-IMAGE_NAME="sindria/nginx-php"
+IMAGE_NAME="registry.sindria.org/nginx-php"
 TAG_VERSION=2.0.0
 
 PHP_VERSION=$1

@@ -3,11 +3,11 @@
 This set of images can be used with PHP project from version 5.6 to 7.3.
 
 Available images:
-- sindria/nginx-php-5.6
-- sindria/nginx-php-7.0
-- sindria/nginx-php-7.1
-- sindria/nginx-php-7.2
-- sindria/nginx-php-7.3
+- registry.sindria.org/nginx-php-5.6
+- registry.sindria.org/nginx-php-7.0
+- registry.sindria.org/nginx-php-7.1
+- registry.sindria.org/nginx-php-7.2
+- registry.sindria.org/nginx-php-7.3
 
 ### Installation & Configuration
 
