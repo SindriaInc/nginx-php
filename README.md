@@ -3,6 +3,7 @@
 This set of images can be used with PHP project from version 5.6 to 7.3.
 
 Available images:
+
 - registry.sindria.org/nginx-php-5.6
 - registry.sindria.org/nginx-php-7.0
 - registry.sindria.org/nginx-php-7.1
