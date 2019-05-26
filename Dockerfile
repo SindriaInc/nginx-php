@@ -64,7 +64,7 @@ COPY mail/ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 # Supervisor configuration
 COPY supervisor/supervisor.conf /etc/supervisor/supervisor.conf
-COPY supervisor/*.conf /etc/supervisor/conf.d/
+COPY supervisor/conf.d/*.conf /etc/supervisor/conf.d/
 
 # Setting up volume
 RUN mkdir -p /var/www/app && \
