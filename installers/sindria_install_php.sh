@@ -14,7 +14,7 @@ case ${PHP_VERSION} in
                 php5.6-PDO php5.6-Phar php5.6-posix php5.6-readline php5.6-shmop\
                 php5.6-SimpleXML php5.6-sockets php5.6-sysvmsg php5.6-sysvsem php5.6-sysvshm\
                 php5.6-tokenizer php5.6-wddx php5.6-xml php5.6-xmlreader php5.6-xmlwriter\
-                php5.6-xsl php5.6-opcache php5.6-zip php5.6-fpm php5.6-bcmath
+                php5.6-xsl php5.6-opcache php5.6-zip php5.6-fpm php5.6-bcmath php5.6-imap
         ;;
     7.0)
         apt-get install -y --no-install-recommends php7.0 php7.0-calendar php7.0-ctype php7.0-curl php7.0-dom \
@@ -23,7 +23,7 @@ case ${PHP_VERSION} in
                 php7.0-PDO php7.0-Phar php7.0-posix php7.0-readline php7.0-shmop \
                 php7.0-SimpleXML php7.0-sockets php7.0-sysvmsg php7.0-sysvsem php7.0-sysvshm \
                 php7.0-tokenizer php7.0-wddx php7.0-xml php7.0-xmlreader php7.0-xmlwriter \
-                php7.0-xsl php7.0-opcache php7.0-zip php7.0-fpm php7.0-bcmath
+                php7.0-xsl php7.0-opcache php7.0-zip php7.0-fpm php7.0-bcmath php7.0-imap
         ;;
     7.1)
         apt-get install -y --no-install-recommends php7.1 php7.1-calendar php7.1-ctype php7.1-curl php7.1-dom \
@@ -32,7 +32,7 @@ case ${PHP_VERSION} in
                 php7.1-PDO php7.1-Phar php7.1-posix php7.1-readline php7.1-shmop \
                 php7.1-SimpleXML php7.1-sockets php7.1-sysvmsg php7.1-sysvsem php7.1-sysvshm \
                 php7.1-tokenizer php7.1-wddx php7.1-xml php7.1-xmlreader php7.1-xmlwriter \
-                php7.1-xsl php7.1-opcache php7.1-zip php7.1-fpm php7.1-bcmath
+                php7.1-xsl php7.1-opcache php7.1-zip php7.1-fpm php7.1-bcmath php7.1-imap
         ;;
     7.2)
         apt-get install -y --no-install-recommends php7.2 php7.2-calendar php7.2-ctype php7.2-curl php7.2-dom \
@@ -41,7 +41,7 @@ case ${PHP_VERSION} in
                 php7.2-PDO php7.2-Phar php7.2-posix php7.2-readline php7.2-shmop \
                 php7.2-SimpleXML php7.2-sockets php7.2-sysvmsg php7.2-sysvsem php7.2-sysvshm \
                 php7.2-tokenizer php7.2-wddx php7.2-xml php7.2-xmlreader php7.2-xmlwriter \
-                php7.2-xsl php7.2-opcache php7.2-zip php7.2-fpm php7.2-bcmath
+                php7.2-xsl php7.2-opcache php7.2-zip php7.2-fpm php7.2-bcmath php7.2-imap
         ;;
     7.3)
         apt-get install -y --no-install-recommends php7.3 php7.3-calendar php7.3-ctype php7.3-curl php7.3-dom \
@@ -50,7 +50,7 @@ case ${PHP_VERSION} in
                 php7.3-PDO php7.3-Phar php7.3-posix php7.3-readline php7.3-shmop \
                 php7.3-SimpleXML php7.3-sockets php7.3-sysvmsg php7.3-sysvsem php7.3-sysvshm \
                 php7.3-tokenizer php7.3-wddx php7.3-xml php7.3-xmlreader php7.3-xmlwriter \
-                php7.3-xsl php7.3-opcache php7.3-zip php7.3-fpm php7.3-bcmath
+                php7.3-xsl php7.3-opcache php7.3-zip php7.3-fpm php7.3-bcmath php7.3-imap
     ;;
     *)
         echo "Invalid PHP version specified"
