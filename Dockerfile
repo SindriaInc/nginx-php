@@ -22,7 +22,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends aptitude apt-utils software-properties-common && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
-    apt-get install -y --no-install-recommends gpg-agent ssmtp curl vim unzip supervisor nginx nodejs npm iproute2 && \
+    apt-get install -y --no-install-recommends gpg-agent ssmtp curl vim unzip supervisor nginx cron nodejs npm iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Adding sindria user user
