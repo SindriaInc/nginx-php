@@ -16,7 +16,7 @@ if [[ -z "$3" ]]; then
 fi
 
 IMAGE_NAME="registry.sindria.org/nginx-php"
-TAG_VERSION=2.0.1
+TAG_VERSION=2.0.2
 
 PHP_VERSION=$1
 TAG_SUFFIX=$2
