@@ -25,7 +25,7 @@ RUN apt-get update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
-    apt-get install -y --no-install-recommends gpg-agent ssmtp curl vim unzip supervisor nginx nodejs npm iproute2 && \
+    apt-get install -y --no-install-recommends gpg-agent ssmtp curl vim unzip supervisor nginx cron nodejs npm iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Adding sindria user user
@@ -67,7 +67,7 @@ COPY mail/ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 # Supervisor configuration
 COPY supervisor/supervisor.conf /etc/supervisor/supervisor.conf
-COPY supervisor/*.conf /etc/supervisor/conf.d/
+COPY supervisor/conf.d/*.conf /etc/supervisor/conf.d/
 
 # Setting up volume
 RUN mkdir -p /var/www/app && \
