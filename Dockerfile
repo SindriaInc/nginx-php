@@ -5,6 +5,7 @@ ARG TAG_VERSION
 ARG TAG_SUFFIX
 ARG HOST_USER_UID
 ARG PHP_VERSION
+ARG TIMEZONE
 
 LABEL \
 	name="sindria's PHP-FPM ${PHP_VERSION} Image" \
@@ -13,6 +14,7 @@ LABEL \
 	vendor="sindria"
 
 ENV DEBIAN_FRONTEND="noninteractive" \
+        TZ=${TIMEZONE}
 	SINDRIA_USER="sindria" \
 	SINDRIA_USER_HOME="/home/sindria" \
 	PHP_VERSION=${PHP_VERSION} \
@@ -20,6 +22,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends aptitude apt-utils software-properties-common && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
     apt-get install -y --no-install-recommends gpg-agent ssmtp curl vim unzip supervisor nginx nodejs npm iproute2 && \

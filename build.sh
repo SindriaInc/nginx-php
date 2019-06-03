@@ -21,6 +21,7 @@ TAG_VERSION=2.0.0
 PHP_VERSION=$1
 TAG_SUFFIX=$2
 HOST_USER_UID=$3
+TIMEZONE=Europe/Rome
 
 FULL_IMAGE_NAME="${IMAGE_NAME}-${PHP_VERSION}:${TAG_VERSION}-${TAG_SUFFIX}"
 
@@ -30,4 +31,5 @@ docker build --file ./Dockerfile \
     --build-arg TAG_SUFFIX=${TAG_SUFFIX} \
     --build-arg HOST_USER_UID=${HOST_USER_UID} \
     --build-arg PHP_VERSION=${PHP_VERSION} \
+    --build-arg TIMEZONE=${TIMEZONE} \
     .
