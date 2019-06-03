@@ -9,12 +9,12 @@ ARG TIMEZONE
 
 LABEL \
 	name="sindria's PHP-FPM ${PHP_VERSION} Image" \
-	image="sindria/nginx-php-${PHP_VERSION}" \
+	image="registry.sindria.org/nginx-php-${PHP_VERSION}" \
 	tag="${TAG_VERSION}-${TAG_SUFFIX}" \
 	vendor="sindria"
 
 ENV DEBIAN_FRONTEND="noninteractive" \
-        TZ=${TIMEZONE}
+        TZ=${TIMEZONE} \
 	SINDRIA_USER="sindria" \
 	SINDRIA_USER_HOME="/home/sindria" \
 	PHP_VERSION=${PHP_VERSION} \
