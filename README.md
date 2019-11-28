@@ -1,14 +1,15 @@
 ## Sindria nginx-php Docker image
 
-This set of images can be used with PHP project from version 5.6 to 7.3.
+This set of images can be used with PHP project from version 5.6 to 7.4.
 
 Available images:
 
-- registry.sindria.org/nginx-php-5.6
-- registry.sindria.org/nginx-php-7.0
-- registry.sindria.org/nginx-php-7.1
-- registry.sindria.org/nginx-php-7.2
-- registry.sindria.org/nginx-php-7.3
+- registry.sindria.org/docker-images/nginx-php:1.0.0-5.6
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.0
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.1
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.2
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.3
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.4
 
 ### Installation & Configuration
 

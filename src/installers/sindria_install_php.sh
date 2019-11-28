@@ -51,6 +51,15 @@ case ${PHP_VERSION} in
                 php7.3-SimpleXML php7.3-sockets php7.3-sysvmsg php7.3-sysvsem php7.3-sysvshm \
                 php7.3-tokenizer php7.3-wddx php7.3-xml php7.3-xmlreader php7.3-xmlwriter \
                 php7.3-xsl php7.3-opcache php7.3-zip php7.3-fpm php7.3-bcmath php7.3-imap
+        ;;
+    7.4)
+        apt-get install -y --no-install-recommends php7.4 php7.4-calendar php7.4-ctype php7.4-curl php7.4-dom \
+                php7.4-exif php7.4-fileinfo php7.4-ftp php7.4-gd php7.4-gettext php7.4-iconv php7.4-intl php7.4-json \
+                php7.4-mbstring php7.4-mysql php7.4-mysqli php7.4-mysqlnd \
+                php7.4-PDO php7.4-Phar php7.4-posix php7.4-readline php7.4-shmop \
+                php7.4-SimpleXML php7.4-sockets php7.4-sysvmsg php7.4-sysvsem php7.4-sysvshm \
+                php7.4-tokenizer php7.4-wddx php7.4-xml php7.4-xmlreader php7.4-xmlwriter \
+                php7.4-xsl php7.4-opcache php7.4-zip php7.4-fpm php7.4-bcmath php7.4-imap
     ;;
     *)
         echo "Invalid PHP version specified"

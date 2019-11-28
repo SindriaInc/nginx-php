@@ -1,11 +1,11 @@
 version: '3.7'
 
-# Change PHP_VERSION with the needed PHP version (5.6 7.0 7.1 7.2 7.3)
-# Change IMAGE_VERSION with the desired image version (current 2.0.1)
+# Change PHP_VERSION with the needed PHP version (5.6 7.0 7.1 7.2 7.3 7.4)
+# Change IMAGE_VERSION with the desired image version (current 1.0.0)
 # Change env with "prod" or "dev"
 services:
   nginx-php:
-    image: "registry.sindria.org/nginx-php-PHP_VERSION:IMAGE_VERSION-ENV"
+    image: "registry.sindria.org/docker-images/nginx-php:IMAGE_VERSION-PHP_VERSION"
     container_name: "example.org-backend"
     environment:
       - VIRTUAL_HOST=${APP_DOMAIN}
