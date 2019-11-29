@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PHP_VERSION=$1
-TAG_SUFFIX=$2
+TAG_ENV=$2
 
 LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 apt-get update
@@ -70,11 +70,11 @@ esac
 # Installing additional PHP extensions
 apt-get install --no-install-recommends -y php-memcached php-redis php-imagick php-mongo
 
-# Installing composer
-curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
-php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-if [ ${TAG_SUFFIX} = 'dev' ]; then
+if [ ${TAG_ENV} = 'local' ]; then
+    # Installing composer
+    curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
     apt-get install -y --no-install-recommends php-xdebug
     # CS Fixer
     curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer
@@ -84,6 +84,10 @@ if [ ${TAG_SUFFIX} = 'dev' ]; then
     curl -L https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar -o /usr/local/bin/phpcbf
     chmod +x /usr/local/bin/phpcs
     chmod +x /usr/local/bin/phpcbf
+    # Installing Node.js
+    apt-get install -y --no-install-recommends nodejs npm
+    curl -sL https://deb.nodesource.com/setup_10.x | bash -
+    apt-get install --no-install-recommends -y nodejs
 fi
 
 # Cleaning

@@ -4,12 +4,18 @@ This set of images can be used with PHP project from version 5.6 to 7.4.
 
 Available images:
 
-- registry.sindria.org/docker-images/nginx-php:1.0.0-5.6
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.0
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.1
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.2
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.3
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.4
+- registry.sindria.org/docker-images/nginx-php:1.0.0-5.6-local
+- registry.sindria.org/docker-images/nginx-php:1.0.0-5.6-production
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.0-local
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.0-production
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.1-local
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.1-production
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.2-local
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.2-production
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.3-local
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.3-production
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.4-local
+- registry.sindria.org/docker-images/nginx-php:1.0.0-7.4-production
 
 ### Installation & Configuration
 
