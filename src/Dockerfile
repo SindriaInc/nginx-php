@@ -71,7 +71,7 @@ RUN mkdir -p /var/www/app && \
 WORKDIR /var/www/app
 
 # Add and execute startup command
-COPY ./src/startup.sh /startup.sh
+COPY startup.sh /startup.sh
 CMD ["/bin/bash", "/startup.sh"]
 
 EXPOSE 80
