@@ -34,9 +34,9 @@ RUN useradd ${SINDRIA_USER} -u ${HOST_USER_UID} -d ${SINDRIA_USER_HOME} -s /bin/
     mkdir -p ${SINDRIA_USER_HOME}/bin/installers && \
     mkdir -p ${SINDRIA_USER_HOME}/config
 
-COPY ./src/installers/* ${SINDRIA_USER_HOME}/bin/installers
+COPY installers/* ${SINDRIA_USER_HOME}/bin/installers
 
-COPY ./src/.bash_aliases /root/.bash_aliases
+COPY .bash_aliases /root/.bash_aliases
 RUN cp /root/.bashrc ${SINDRIA_USER_HOME}/.bashrc && \
     cp /root/.bash_aliases ${SINDRIA_USER_HOME}/.bash_aliases && \
     chown -R ${SINDRIA_USER}:${SINDRIA_USER} ${SINDRIA_USER_HOME}
@@ -46,8 +46,8 @@ RUN ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSION} ${
 
 # nginx configuration
 RUN mkdir /etc/nginx/sites
-COPY ./src/nginx/nginx.conf /etc/nginx/
-COPY ./src/nginx/conf.d/*.conf /etc/nginx/conf.d/
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/conf.d/*.conf /etc/nginx/conf.d/
 
 # PHP configuration
 # Create a symlink for php-fpm executable and removing www fpm pools
@@ -55,14 +55,14 @@ RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
     mkdir /run/php/ && \
     chown ${SINDRIA_USER}:root /run/php/ && \
     rm /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
-COPY ./src/php/fpm/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
+COPY php/fpm/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 
 # Email configuration
-COPY ./src/mail/ssmtp.conf /etc/ssmtp/ssmtp.conf
+COPY mail/ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 # Supervisor configuration
-COPY ./src/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
-COPY ./src/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+COPY supervisor/supervisor.conf /etc/supervisor/supervisor.conf
+COPY supervisor/conf.d/*.conf /etc/supervisor/conf.d/
 
 # Setting up volume
 RUN mkdir -p /var/www/app && \
