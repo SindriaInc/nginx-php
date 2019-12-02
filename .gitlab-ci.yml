@@ -24,8 +24,8 @@ test:php71-build:
     - chmod +x build.sh
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} local
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-local
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-production
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
   only:
     - master
 
@@ -41,8 +41,8 @@ test:php72-build:
     - chmod +x build.sh
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} local
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-local
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-production
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
   only:
     - master
 
@@ -58,8 +58,8 @@ test:php73-build:
     - chmod +x build.sh
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} local
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-local
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-production
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
   only:
     - master
 
@@ -75,8 +75,8 @@ test:php74-build:
     - chmod +x build.sh
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} local
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-local
-    - docker image rm registry.sindria.org/docker-images/nginx-php:$CI_COMMIT_TAG-${BUILD_PHP_VERSION}-production
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
+    - docker image rm registry.sindria.org/docker-images/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
   only:
     - master
 
