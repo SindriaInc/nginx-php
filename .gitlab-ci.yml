@@ -15,6 +15,8 @@ before_script:
 test:php71-build:
   stage: test
   when: manual
+  tags:
+    - default
   variables:
     BUILD_PHP_VERSION: '7.1'
   script:
@@ -30,6 +32,8 @@ test:php71-build:
 test:php72-build:
   stage: test
   when: manual
+  tags:
+    - default
   variables:
     BUILD_PHP_VERSION: '7.2'
   script:
@@ -45,6 +49,8 @@ test:php72-build:
 test:php73-build:
   stage: test
   when: manual
+  tags:
+    - default
   variables:
     BUILD_PHP_VERSION: '7.3'
   script:
@@ -60,6 +66,8 @@ test:php73-build:
 test:php74-build:
   stage: test
   when: manual
+  tags:
+    - default
   variables:
     BUILD_PHP_VERSION: '7.4'
   script:
