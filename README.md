@@ -27,7 +27,7 @@ for deploying a new application.
 - PHP_PM_MAX_CHILDREN Max number of child process for php-fpm pool 
 
 #### Installation instructions
-- copy `config` directory in your project root
+- copy `config` directory in your project root.
 - navigate to `config/php/cli` and `config/php/fpm`, copy ini configuration file corresponding to your
 PHP version as `php.ini`
 - navigate to `config/nginx/sites`, open `app.conf` and update it according to your needs
