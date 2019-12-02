@@ -31,6 +31,7 @@ TIMEZONE=Europe/Rome
 
 docker build ./src \
     --tag ${IMAGE_NAME}:${TAG_VERSION}-${TAG_SUFFIX}-${TAG_ENV} \
+    --tag ${IMAGE_NAME}:latest-${TAG_SUFFIX}-${TAG_ENV} \
     --build-arg TAG_VERSION=${TAG_VERSION} \
     --build-arg TAG_SUFFIX=${TAG_SUFFIX} \
     --build-arg TAG_ENV=${TAG_ENV} \
