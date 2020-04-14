@@ -34,7 +34,7 @@ RUN useradd ${SINDRIA_USER} -u ${HOST_USER_UID} -d ${SINDRIA_USER_HOME} -s /bin/
     mkdir -p ${SINDRIA_USER_HOME}/bin/installers && \
     mkdir -p ${SINDRIA_USER_HOME}/config
 
-COPY resources/installers ${SINDRIA_USER_HOME}/bin/installers
+COPY resources/installers/* ${SINDRIA_USER_HOME}/bin/installers
 
 # Installing selected php version and development software kit
 RUN bash ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSION} ${TAG_ENV}
@@ -55,7 +55,7 @@ COPY resources/php/fpm/pool.d/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/si
 
 # Supervisor configuration
 COPY resources/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
-COPY resources/supervisor/conf.d /etc/supervisor/conf.d/
+COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
 
 # Setting up volume
 RUN mkdir -p /var/www/app && \
