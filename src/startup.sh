@@ -6,10 +6,6 @@ CONTAINER_GATEWAY=`/sbin/ip route|awk '/default/ { print $3 }'`
 echo -e "\n# Hostname for gateway" >> /etc/hosts
 echo -e "${CONTAINER_GATEWAY}\tdocker.host.internal\n" >> /etc/hosts
 
-# Configuring email relay
-#sed -i -E "s|rewriteDomain=([a-zA-Z0-9\.\-]+)|rewriteDomain=${VIRTUAL_HOST}|g" /etc/ssmtp/ssmtp.conf
-#sed -i -E "s|hostname=([a-zA-Z0-9\.\-]+)|hostname=${VIRTUAL_HOST}|g" /etc/ssmtp/ssmtp.conf
-
 # Adding variables to php-fpm pool configuration
 sed -i -E "s|\[@@POOL_NAME@@\]|\[${HOSTNAME}-php-fpm-pool\]|g" /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 sed -i -E "s|pm.max_children = ([0-9]+)|pm.max_children = ${PHP_PM_MAX_CHILDREN}|g" /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf

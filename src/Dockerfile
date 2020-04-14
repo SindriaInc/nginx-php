@@ -25,7 +25,7 @@ RUN apt-get update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
-    apt-get install -y --no-install-recommends gpg-agent ssmtp curl vim unzip supervisor nginx cron iproute2 && \
+    apt-get install -y --no-install-recommends gpg-agent curl vim unzip supervisor nginx cron iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Adding sindria user
@@ -51,7 +51,7 @@ RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
     mkdir -p /run/php/ && \
     chown ${SINDRIA_USER}:root /run/php/ && \
     rm /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
-COPY resources/php/fpm/pool.d /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
+COPY resources/php/fpm/pool.d/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 
 # Supervisor configuration
 COPY resources/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
