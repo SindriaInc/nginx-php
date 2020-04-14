@@ -36,13 +36,8 @@ RUN useradd ${SINDRIA_USER} -u ${HOST_USER_UID} -d ${SINDRIA_USER_HOME} -s /bin/
 
 COPY resources/installers ${SINDRIA_USER_HOME}/bin/installers
 
-COPY resources/.bash_aliases /root/.bash_aliases
-RUN cp /root/.bashrc ${SINDRIA_USER_HOME}/.bashrc && \
-    cp /root/.bash_aliases ${SINDRIA_USER_HOME}/.bash_aliases && \
-    chown -R ${SINDRIA_USER}:${SINDRIA_USER} ${SINDRIA_USER_HOME}
-
 # Installing selected php version and development software kit
-RUN ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSION} ${TAG_ENV}
+RUN bash ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSION} ${TAG_ENV}
 
 # Nginx configuration
 RUN mkdir -p /etc/nginx/sites-enabled
@@ -57,9 +52,6 @@ RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
     chown ${SINDRIA_USER}:root /run/php/ && \
     rm /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 COPY resources/php/fpm/pool.d /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
-
-# Email configuration
-COPY resources/mail /etc/ssmtp/ssmtp.conf
 
 # Supervisor configuration
 COPY resources/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
