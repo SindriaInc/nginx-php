@@ -41,9 +41,9 @@ RUN bash ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSIO
 
 # Nginx configuration
 RUN mkdir -p /etc/nginx/sites-enabled
-COPY resources/nginx /etc/nginx/
-COPY resources/nginx /etc/nginx/conf.d/
-COPY resources/nginx /etc/nginx/sites-enabled/
+COPY resources/nginx/nginx.conf /etc/nginx/
+COPY resources/nginx/conf.d/* /etc/nginx/conf.d/
+COPY resources/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 
 # PHP configuration
 # Create a symlink for php-fpm executable and removing www fpm pools
