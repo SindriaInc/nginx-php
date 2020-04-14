@@ -58,9 +58,9 @@ case ${PHP_VERSION} in
                 php7.4-mbstring php7.4-mysql php7.4-mysqli php7.4-mysqlnd \
                 php7.4-PDO php7.4-Phar php7.4-posix php7.4-readline php7.4-shmop \
                 php7.4-SimpleXML php7.4-sockets php7.4-sysvmsg php7.4-sysvsem php7.4-sysvshm \
-                php7.4-tokenizer php7.4-wddx php7.4-xml php7.4-xmlreader php7.4-xmlwriter \
+                php7.4-tokenizer php7.4-xml php7.4-xmlreader php7.4-xmlwriter \
                 php7.4-xsl php7.4-opcache php7.4-zip php7.4-fpm php7.4-bcmath php7.4-imap
-    ;;
+        ;;
     *)
         echo "Invalid PHP version specified"
         exit 1
