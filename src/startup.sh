@@ -19,9 +19,14 @@ if [ -e /home/sindria/config/nginx/sites-available/app.conf ]; then
     cp /home/sindria/config/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 fi
 
-# Override php.ini if php.ini config file exists
+# Override php.ini fpm if config file exists
 if [ -e /home/sindria/config/php/fpm/php.ini ]; then
     cp /home/sindria/config/php/fpm/php.ini /etc/php/${PHP_VERSION}/fpm/php.ini
+fi
+
+# Override php.ini cli if config file exists
+if [ -e /home/sindria/config/php/cli/php.ini ]; then
+    cp /home/sindria/config/php/cli/php.ini /etc/php/${PHP_VERSION}/cli/php.ini
 fi
 
 # Override cron.d configuration
