@@ -86,7 +86,7 @@ if [ ${TAG_ENV} = 'local' ]; then
     chmod +x /usr/local/bin/phpcbf
     # Installing Node.js
     apt-get install -y --no-install-recommends nodejs npm
-    curl -sL https://deb.nodesource.com/setup_10.x | bash -
+    curl -sL https://deb.nodesource.com/setup_12.x | bash -
     apt-get install --no-install-recommends -y nodejs
 fi
 

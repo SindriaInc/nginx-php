@@ -14,19 +14,24 @@ sed -i -E "s|hostname=([a-zA-Z0-9\.\-]+)|hostname=${VIRTUAL_HOST}|g" /etc/ssmtp/
 sed -i -E "s|\[@@POOL_NAME@@\]|\[${HOSTNAME}-php-fpm-pool\]|g" /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 sed -i -E "s|pm.max_children = ([0-9]+)|pm.max_children = ${PHP_PM_MAX_CHILDREN}|g" /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 
-# Copying nginx virtualhost(s) configuration(s)
-cp /home/sindria/config/nginx/sites/*.conf /etc/nginx/sites/
+# Override nginx virtualhost configuration
+if [ -e /home/sindria/config/nginx/sites-available/app.conf ]; then
+    cp /home/sindria/config/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
+fi
 
-# Check if php.ini config exists
+# Override php.ini if php.ini config file exists
 if [ -e /home/sindria/config/php/fpm/php.ini ]; then
     cp /home/sindria/config/php/fpm/php.ini /etc/php/${PHP_VERSION}/fpm/php.ini
 fi
 
-# Copying cron.d configuration
-cp /home/sindria/config/cron.d/* /etc/cron.d/
-chown root:root /etc/cron.d/*
-chmod 644 /etc/cron.d/*
+# Override cron.d configuration
+if [ -e /home/sindria/config/cron.d/app ]; then
+    cp /home/sindria/config/cron.d/app /etc/cron.d/
+    chown root:root /etc/cron.d/*
+    chmod 644 /etc/cron.d/*
+fi
 
+# Fix permission
 chown -R sindria:sindria /var/www/app
 
 # Override timezone by env

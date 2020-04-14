@@ -8,8 +8,8 @@ ARG HOST_USER_UID
 ARG TIMEZONE
 
 LABEL \
-	name="sindria/nginx-php" \
-	image="registry.sindria.org/nginx-php" \
+	name="sindriainc/nginx-php" \
+	image="nginx-php" \
 	tag="${TAG_VERSION}-${TAG_SUFFIX}-${TAG_ENV}" \
 	vendor="sindria"
 
@@ -34,9 +34,9 @@ RUN useradd ${SINDRIA_USER} -u ${HOST_USER_UID} -d ${SINDRIA_USER_HOME} -s /bin/
     mkdir -p ${SINDRIA_USER_HOME}/bin/installers && \
     mkdir -p ${SINDRIA_USER_HOME}/config
 
-COPY installers/* ${SINDRIA_USER_HOME}/bin/installers
+COPY resources/installers ${SINDRIA_USER_HOME}/bin/installers
 
-COPY .bash_aliases /root/.bash_aliases
+COPY resources/.bash_aliases /root/.bash_aliases
 RUN cp /root/.bashrc ${SINDRIA_USER_HOME}/.bashrc && \
     cp /root/.bash_aliases ${SINDRIA_USER_HOME}/.bash_aliases && \
     chown -R ${SINDRIA_USER}:${SINDRIA_USER} ${SINDRIA_USER_HOME}
@@ -44,25 +44,26 @@ RUN cp /root/.bashrc ${SINDRIA_USER_HOME}/.bashrc && \
 # Installing selected php version and development software kit
 RUN ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSION} ${TAG_ENV}
 
-# nginx configuration
-RUN mkdir /etc/nginx/sites
-COPY nginx/nginx.conf /etc/nginx/
-COPY nginx/conf.d/*.conf /etc/nginx/conf.d/
+# Nginx configuration
+RUN mkdir -p /etc/nginx/sites-enabled
+COPY resources/nginx /etc/nginx/
+COPY resources/nginx /etc/nginx/conf.d/
+COPY resources/nginx /etc/nginx/sites-enabled/
 
 # PHP configuration
 # Create a symlink for php-fpm executable and removing www fpm pools
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
-    mkdir /run/php/ && \
+    mkdir -p /run/php/ && \
     chown ${SINDRIA_USER}:root /run/php/ && \
     rm /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
-COPY php/fpm/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
+COPY resources/php/fpm/pool.d /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 
 # Email configuration
-COPY mail/ssmtp.conf /etc/ssmtp/ssmtp.conf
+COPY resources/mail /etc/ssmtp/ssmtp.conf
 
 # Supervisor configuration
-COPY supervisor/supervisor.conf /etc/supervisor/supervisor.conf
-COPY supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+COPY resources/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
+COPY resources/supervisor/conf.d /etc/supervisor/conf.d/
 
 # Setting up volume
 RUN mkdir -p /var/www/app && \

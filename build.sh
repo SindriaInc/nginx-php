@@ -21,7 +21,7 @@ if [[ -z "$4" ]]; then
     exit 1
 fi
 
-IMAGE_NAME="registry.sindria.org/docker-images/nginx-php"
+IMAGE_NAME="sindriainc/nginx-php"
 
 HOST_USER_UID=$1
 TAG_VERSION=$2
