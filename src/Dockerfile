@@ -18,6 +18,7 @@ ENV HOST_USER_UID ${HOST_USER_UID}
 ENV TZ=${TIMEZONE}
 ENV SINDRIA_USER="sindria"
 ENV SINDRIA_USER_HOME="/home/sindria"
+ENV DEFAULT_SINDRIA_USER_PASSWORD="sindria"
 ENV PHP_VERSION=${TAG_SUFFIX}
 ENV	PHP_PM_MAX_CHILDREN=16
 
@@ -26,7 +27,7 @@ RUN apt-get update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
-    apt-get install -y --no-install-recommends gpg-agent curl supervisor nginx cron iproute2 && \
+    apt-get install -y --no-install-recommends gpg-agent curl supervisor nginx cron openssh-server iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Adding sindria user
@@ -39,6 +40,19 @@ COPY resources/installers/* ${SINDRIA_USER_HOME}/bin/installers
 
 # Installing selected php version and development software kit
 RUN bash ${SINDRIA_USER_HOME}/bin/installers/sindria_install_php.sh ${PHP_VERSION} ${TAG_ENV}
+
+# SSH configuration
+COPY resources/ssh/sshd_config /etc/ssh/sshd_config
+RUN mkdir -p /run/sshd && \
+    ln -s /var/www/app ${SINDRIA_USER_HOME}/app && \
+    chmod 751 /home && \
+    chmod 751 /var && \
+    mkdir -p ${SINDRIA_USER_HOME}/.ssh && \
+    touch ${SINDRIA_USER_HOME}/.ssh/authorized_keys && \
+    chmod 700 ${SINDRIA_USER_HOME}/.ssh && \
+    chmod 600 ${SINDRIA_USER_HOME}/.ssh/* && \
+    chown -R ${SINDRIA_USER}:${SINDRIA_USER} ${SINDRIA_USER_HOME} && \
+    echo "${DEFAULT_SINDRIA_USER_PASSWORD}:${SINDRIA_USER}" | chpasswd
 
 # Nginx configuration
 RUN mkdir -p /etc/nginx/sites-enabled
@@ -68,4 +82,4 @@ WORKDIR /var/www/app
 COPY startup.sh /startup.sh
 CMD ["/bin/bash", "/startup.sh"]
 
-EXPOSE 80
+EXPOSE 80 22

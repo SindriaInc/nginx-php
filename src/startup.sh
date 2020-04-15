@@ -49,4 +49,9 @@ if [ "$HOST_USER_UID" != "1000" ]; then
     usermod -u $HOST_USER_UID sindria && groupmod sindria -g $HOST_USER_UID
 fi
 
+# Override default sindria user password by env
+if [ "$DEFAULT_SINDRIA_USER_PASSWORD" != "sindria" ]; then
+    echo "${DEFAULT_SINDRIA_USER_PASSWORD}:${SINDRIA_USER}" | chpasswd
+fi
+
 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
