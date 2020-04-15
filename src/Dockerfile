@@ -25,7 +25,7 @@ RUN apt-get update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
-    apt-get install -y --no-install-recommends gpg-agent supervisor nginx cron iproute2 && \
+    apt-get install -y --no-install-recommends gpg-agent curl supervisor nginx cron iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Adding sindria user
