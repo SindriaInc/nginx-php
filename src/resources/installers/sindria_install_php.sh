@@ -89,7 +89,7 @@ if [ ${TAG_ENV} = 'local' ]; then
     curl -sL https://deb.nodesource.com/setup_12.x | bash -
     apt-get install --no-install-recommends -y nodejs
     # Installing packages
-    apt-get install --no-install-recommends -y vim unzip git rsync net-tools iputils-ping
+    apt-get install --no-install-recommends -y wget vim unzip git rsync net-tools iputils-ping
 fi
 
 # Cleaning

@@ -14,6 +14,7 @@ LABEL \
 	vendor="sindria"
 
 ENV DEBIAN_FRONTEND="noninteractive"
+ENV HOST_USER_UID ${HOST_USER_UID}
 ENV TZ=${TIMEZONE}
 ENV SINDRIA_USER="sindria"
 ENV SINDRIA_USER_HOME="/home/sindria"

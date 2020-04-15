@@ -45,7 +45,7 @@ if [ "$TZ" != "" ] || [ "$TZ" != "Europe/Rome" ]; then
 fi
 
 # Override host user uid by env
-if [ "$HOST_USER_UID" != "" ] || [ "$HOST_USER_UID" != "1000" ]; then
+if [ "$HOST_USER_UID" != "1000" ]; then
     usermod -u $HOST_USER_UID sindria && groupmod sindria -g $HOST_USER_UID
 fi
 
