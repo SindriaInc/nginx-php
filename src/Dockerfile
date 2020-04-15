@@ -13,12 +13,12 @@ LABEL \
 	tag="${TAG_VERSION}-${TAG_SUFFIX}-${TAG_ENV}" \
 	vendor="sindria"
 
-ENV DEBIAN_FRONTEND="noninteractive" \
-        TZ=${TIMEZONE} \
-	SINDRIA_USER="sindria" \
-	SINDRIA_USER_HOME="/home/sindria" \
-	PHP_VERSION=${TAG_SUFFIX} \
-	PHP_PM_MAX_CHILDREN=16
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV TZ=${TIMEZONE}
+ENV SINDRIA_USER="sindria"
+ENV SINDRIA_USER_HOME="/home/sindria"
+ENV PHP_VERSION=${TAG_SUFFIX}
+ENV	PHP_PM_MAX_CHILDREN=16
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends aptitude apt-utils software-properties-common && \
