@@ -1,19 +1,15 @@
 ## Magento nginx-php base image
 
-This set of images can be used with PHP project from version 7.0 to 7.4.
+This set of images can be used with PHP project from version 7.1 to 7.3.
 
 Available images:
 
-- sindriainc/nginx-php:magento-7.0-local
-- sindriainc/nginx-php:magento-7.0-production
 - sindriainc/nginx-php:magento-7.1-local
 - sindriainc/nginx-php:magento-7.1-production
 - sindriainc/nginx-php:magento-7.2-local
 - sindriainc/nginx-php:magento-7.2-production
 - sindriainc/nginx-php:magento-7.3-local
 - sindriainc/nginx-php:magento-7.3-production
-- sindriainc/nginx-php:magento-7.4-local
-- sindriainc/nginx-php:magento-7.4-production
 
 #### Environment variables
 

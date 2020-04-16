@@ -12,24 +12,6 @@ before_script:
   - export NC='\033[0m' #No Color
   - export NOW=$(date "+%Y-%m-%d_%H-%M-%S")
 
-
-test:build:php70:
-  stage: test
-  when: manual
-  tags:
-    - docker
-  variables:
-    BUILD_PHP_VERSION: "7.0"
-  script:
-    - echo -e "${BLUE}Building image...${NC}"
-    - chmod +x build.sh
-    - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} local
-    - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
-    - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-  only:
-    - magento
-
 test:build:php71:
   stage: test
   when: manual
@@ -81,36 +63,6 @@ test:build:php73:
   only:
     - magento
 
-test:build:php74:
-  stage: test
-  when: manual
-  tags:
-    - docker
-  variables:
-    BUILD_PHP_VERSION: "7.4"
-  script:
-    - echo -e "${BLUE}Building image...${NC}"
-    - chmod +x build.sh
-    - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} local
-    - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
-    - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-  only:
-    - magento
-
-build:image:php70:
-  stage: build
-  tags:
-    - docker
-  only:
-    - branches
-  script:
-    - echo -e "${BLUE}Building image...${NC}"
-    - chmod +x build.sh
-    - ./build.sh 1000 magento 7.0 local
-    - ./build.sh 1000 magento 7.0 production
-    - cowsay -f tux "Build Success"
-
 build:image:php71:
   stage: build
   tags:
@@ -121,7 +73,7 @@ build:image:php71:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
     - ./build.sh 1000 magento 7.1 local
-    - ./build.sh 1000 magento 7.1 production
+    #- ./build.sh 1000 magento 7.1 production
     - cowsay -f tux "Build Success"
 
 build:image:php72:
@@ -134,7 +86,7 @@ build:image:php72:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
     - ./build.sh 1000 magento 7.2 local
-    - ./build.sh 1000 magento 7.2 production
+    #- ./build.sh 1000 magento 7.2 production
     - cowsay -f tux "Build Success"
 
 build:image:php73:
@@ -147,38 +99,8 @@ build:image:php73:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
     - ./build.sh 1000 magento 7.3 local
-    - ./build.sh 1000 magento 7.3 production
+    #- ./build.sh 1000 magento 7.3 production
     - cowsay -f tux "Build Success"
-
-build:image:php74:
-  stage: build
-  tags:
-    - docker
-  only:
-    - branches
-  script:
-    - echo -e "${BLUE}Building image...${NC}"
-    - chmod +x build.sh
-    - ./build.sh 1000 magento 7.4 local
-    - ./build.sh 1000 magento 7.4 production
-    - cowsay -f tux "Build Success"
-
-push:image:php70:
-  stage: push
-  tags:
-    - docker
-  only:
-    - branches
-  script:
-    - echo -e "${BLUE}Pushing image into registry...${NC}"
-    - docker push sindriainc/nginx-php:magentp-7.0-local
-    - docker push sindriainc/nginx-php:magento-7.0-production
-    - echo #
-    - echo -e "${BLUE}Cleaning local registry...${NC}"
-    - docker image rm sindriainc/nginx-php:magento-7.0-local
-    - docker image rm sindriainc/nginx-php:magento-7.0-production
-    - echo #
-    - cowsay -f dragon "Well Done! New docker image is now on your registry."
 
 push:image:php71:
   stage: push
@@ -189,11 +111,11 @@ push:image:php71:
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.1-local
-    - docker push sindriainc/nginx-php:magento-7.1-production
+    #- docker push sindriainc/nginx-php:magento-7.1-production
     - echo #
     - echo -e "${BLUE}Cleaning local registry...${NC}"
     - docker image rm sindriainc/nginx-php:magento-7.1-local
-    - docker image rm sindriainc/nginx-php:magento-7.1-production
+    #- docker image rm sindriainc/nginx-php:magento-7.1-production
     - echo #
     - cowsay -f dragon "Well Done! New docker image is now on your registry."
 
@@ -206,11 +128,11 @@ push:image:php72:
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.2-local
-    - docker push sindriainc/nginx-php:magento-7.2-production
+    #- docker push sindriainc/nginx-php:magento-7.2-production
     - echo #
     - echo -e "${BLUE}Cleaning local registry...${NC}"
     - docker image rm sindriainc/nginx-php:magento-7.2-local
-    - docker image rm sindriainc/nginx-php:magento-7.2-production
+    #- docker image rm sindriainc/nginx-php:magento-7.2-production
     - echo #
     - cowsay -f dragon "Well Done! New docker image is now on your registry."
 
@@ -223,28 +145,10 @@ push:image:php73:
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.3-local
-    - docker push sindriainc/nginx-php:magento-7.3-production
+    #- docker push sindriainc/nginx-php:magento-7.3-production
     - echo #
     - echo -e "${BLUE}Cleaning local registry...${NC}"
     - docker image rm sindriainc/nginx-php:magento-7.3-local
-    - docker image rm sindriainc/nginx-php:magento-7.3-production
+    #- docker image rm sindriainc/nginx-php:magento-7.3-production
     - echo #
     - cowsay -f dragon "Well Done! New docker image is now on your registry."
-
-push:image:php74:
-  stage: push
-  tags:
-    - docker
-  only:
-    - branches
-  script:
-    - echo -e "${BLUE}Pushing image into registry...${NC}"
-    - docker push sindriainc/nginx-php:magento-7.4-local
-    - docker push sindriainc/nginx-php:magento-7.4-production
-    - echo #
-    - echo -e "${BLUE}Cleaning local registry...${NC}"
-    - docker image rm sindriainc/nginx-php:magento-7.4-local
-    - docker image rm sindriainc/nginx-php:magento-7.4-production
-    - echo #
-    - cowsay -f dragon "Well Done! New docker image is now on your registry."
-
