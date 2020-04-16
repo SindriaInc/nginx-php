@@ -27,10 +27,8 @@ test:build:php70:
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-production
   only:
-    - master
+    - magento
 
 test:build:php71:
   stage: test
@@ -46,10 +44,8 @@ test:build:php71:
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-production
   only:
-    - master
+    - magento
 
 test:build:php72:
   stage: test
@@ -65,10 +61,8 @@ test:build:php72:
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-production
   only:
-    - master
+    - magento
 
 test:build:php73:
   stage: test
@@ -84,10 +78,8 @@ test:build:php73:
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-production
   only:
-    - master
+    - magento
 
 test:build:php74:
   stage: test
@@ -103,17 +95,15 @@ test:build:php74:
     - ./build.sh 1000 ${CI_COMMIT_REF_SLUG} ${BUILD_PHP_VERSION} production
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-local
     - docker image rm sindriainc/nginx-php:${CI_COMMIT_REF_SLUG}-${BUILD_PHP_VERSION}-production
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-local
-    - docker image rm sindriainc/nginx-php:latest-${BUILD_PHP_VERSION}-production
   only:
-    - master
+    - magento
 
 build:image:php70:
   stage: build
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
@@ -126,7 +116,7 @@ build:image:php71:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
@@ -139,7 +129,7 @@ build:image:php72:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
@@ -152,7 +142,7 @@ build:image:php73:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
@@ -165,7 +155,7 @@ build:image:php74:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Building image...${NC}"
     - chmod +x build.sh
@@ -178,7 +168,7 @@ push:image:php70:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magentp-7.0-local
@@ -195,7 +185,7 @@ push:image:php71:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.1-local
@@ -212,7 +202,7 @@ push:image:php72:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.2-local
@@ -229,7 +219,7 @@ push:image:php73:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.3-local
@@ -246,7 +236,7 @@ push:image:php74:
   tags:
     - docker
   only:
-    - tags
+    - branches
   script:
     - echo -e "${BLUE}Pushing image into registry...${NC}"
     - docker push sindriainc/nginx-php:magento-7.4-local
