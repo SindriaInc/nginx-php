@@ -1,21 +1,21 @@
-## Sindria nginx-php Docker image
+# Nginx PHP
 
 This set of images can be used with PHP project from version 5.6 to 7.4.
 
 Available images:
 
-- registry.sindria.org/docker-images/nginx-php:1.0.0-5.6-local
-- registry.sindria.org/docker-images/nginx-php:1.0.0-5.6-production
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.0-local
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.0-production
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.1-local
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.1-production
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.2-local
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.2-production
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.3-local
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.3-production
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.4-local
-- registry.sindria.org/docker-images/nginx-php:1.0.0-7.4-production
+- sindriainc/nginx-php:2.0.0-5.6-local
+- sindriainc/nginx-php:2.0.0-5.6-production
+- sindriainc/nginx-php:2.0.0-7.0-local
+- sindriainc/nginx-php:2.0.0-7.0-production
+- sindriainc/nginx-php:2.0.0-7.1-local
+- sindriainc/nginx-php:2.0.0-7.1-production
+- sindriainc/nginx-php:2.0.0-7.2-local
+- sindriainc/nginx-php:2.0.0-7.2-production
+- sindriainc/nginx-php:2.0.0-7.3-local
+- sindriainc/nginx-php:2.0.0-7.3-production
+- sindriainc/nginx-php:2.0.0-7.4-local
+- sindriainc/nginx-php:2.0.0-7.4-production
 
 ### Installation & Configuration
 
@@ -32,4 +32,3 @@ for deploying a new application.
 PHP version as `php.ini`
 - navigate to `config/nginx/sites`, open `app.conf` and update it according to your needs
 - if you have any cron job, you can add it to `config/cron.d/app`
-
