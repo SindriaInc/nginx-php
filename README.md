@@ -25,6 +25,7 @@ for deploying a new application.
 #### Environment variables
 - VIRTUAL_HOST Main domain of the application (e.g example.org)
 - PHP_PM_MAX_CHILDREN Max number of child process for php-fpm pool 
+- PHP_XDEBUG_IDE_KEY xdebug ide key, default is `phpstorm`
 
 #### Installation instructions
 - copy `config` directory in your project root.
