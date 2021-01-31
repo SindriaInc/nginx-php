@@ -20,7 +20,8 @@ ENV SINDRIA_USER="sindria"
 ENV SINDRIA_USER_HOME="/home/sindria"
 ENV DEFAULT_SINDRIA_USER_PASSWORD="sindria"
 ENV PHP_VERSION=${TAG_SUFFIX}
-ENV	PHP_PM_MAX_CHILDREN=16
+ENV PHP_PM_MAX_CHILDREN=16
+ENV PHP_XDEBUG_IDE_KEY phpstorm
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends aptitude apt-utils software-properties-common && \

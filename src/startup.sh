@@ -14,6 +14,11 @@ if [ "$PHP_PM_MAX_CHILDREN" != "16" ]; then
     sed -i -E "s|pm.max_children = ([0-9]+)|pm.max_children = ${PHP_PM_MAX_CHILDREN}|g" /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 fi
 
+# Override xdebug ide key
+if [ "${PHP_XDEBUG_IDE_KEY}" != "phpstorm" ]; then
+    sed -i -E "s|phpstorm|${PHP_XDEBUG_IDE_KEY}|g" /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+fi
+
 # Override nginx virtualhost configuration
 if [ -e /home/sindria/config/nginx/sites-available/app.conf ]; then
     cp /home/sindria/config/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
