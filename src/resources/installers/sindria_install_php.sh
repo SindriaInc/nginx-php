@@ -77,10 +77,13 @@ if [ ${TAG_ENV} = 'local' ]; then
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
     # Installing Xdebug
     apt-get install -y --no-install-recommends php-xdebug
-    echo "xdebug.remote_enable=1" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
-    echo "xdebug.remote_host=docker.host.internal" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
-    echo "xdebug.remote_port=${PHP_XDEBUG_PORT}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "xdebug.mode=${PHP_XDEBUG_MODE}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "xdebug.start_with_request=${PHP_XDEBUG_START_WITH_REQUEST}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "xdebug.client_host=${PHP_XDEBUG_HOST}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "xdebug.client_port=${PHP_XDEBUG_PORT}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
     echo "xdebug.idekey=${PHP_XDEBUG_IDE_KEY}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "xdebug.log=/var/log/xdebug.log" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    touch /var/log/xdebug.log
     # CS Fixer
     curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer
     chmod +x /usr/local/bin/php-cs-fixer

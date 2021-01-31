@@ -21,8 +21,11 @@ ENV SINDRIA_USER_HOME="/home/sindria"
 ENV DEFAULT_SINDRIA_USER_PASSWORD="sindria"
 ENV PHP_VERSION=${TAG_SUFFIX}
 ENV PHP_PM_MAX_CHILDREN=16
+ENV PHP_XDEBUG_MODE debug
+ENV PHP_XDEBUG_START_WITH_REQUEST yes
+ENV PHP_XDEBUG_HOST docker.host.internal
+ENV PHP_XDEBUG_PORT 9000
 ENV PHP_XDEBUG_IDE_KEY PHPSTORM
-ENV PHP_XDEBUG_PORT 9001
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends aptitude apt-utils software-properties-common && \
