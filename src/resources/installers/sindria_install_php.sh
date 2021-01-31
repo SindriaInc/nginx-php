@@ -79,7 +79,7 @@ if [ ${TAG_ENV} = 'local' ]; then
     apt-get install -y --no-install-recommends php-xdebug
     echo "xdebug.remote_enable=1" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
     echo "xdebug.remote_host=docker.host.internal" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
-    echo "xdebug.remote_port=9000" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "xdebug.remote_port=${PHP_XDEBUG_PORT}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
     echo "xdebug.idekey=${PHP_XDEBUG_IDE_KEY}" >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
     # CS Fixer
     curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer
