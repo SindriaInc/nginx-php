@@ -15,8 +15,8 @@ if [ "$PHP_PM_MAX_CHILDREN" != "16" ]; then
 fi
 
 # Override xdebug ide key
-if [ "${PHP_XDEBUG_IDE_KEY}" != "phpstorm" ]; then
-    sed -i -E "s|phpstorm|${PHP_XDEBUG_IDE_KEY}|g" /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+if [ "${PHP_XDEBUG_IDE_KEY}" != "PHPSTORM" ]; then
+    sed -i -E "s|PHPSTORM|${PHP_XDEBUG_IDE_KEY}|g" /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
 fi
 
 # Override nginx virtualhost configuration
