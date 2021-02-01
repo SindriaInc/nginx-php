@@ -1,15 +1,17 @@
-# Nginx PHP - Magento
+# Nginx PHP - Drupal
 
-This set of images can be used with PHP project from version 7.1 to 7.3.
+This set of images can be used with PHP project from version 7.1 to 7.4.
 
 Available images:
 
-- sindriainc/nginx-php:magento-7.1-local
-- sindriainc/nginx-php:magento-7.1-production
-- sindriainc/nginx-php:magento-7.2-local
-- sindriainc/nginx-php:magento-7.2-production
-- sindriainc/nginx-php:magento-7.3-local
-- sindriainc/nginx-php:magento-7.3-production
+- sindriainc/nginx-php:drupal-7.1-local
+- sindriainc/nginx-php:drupal-7.1-production
+- sindriainc/nginx-php:drupal-7.2-local
+- sindriainc/nginx-php:drupal-7.2-production
+- sindriainc/nginx-php:drupal-7.3-local
+- sindriainc/nginx-php:drupal-7.3-production
+- sindriainc/nginx-php:drupal-7.4-local
+- sindriainc/nginx-php:drupal-7.4-production
 
 #### Environment variables
 

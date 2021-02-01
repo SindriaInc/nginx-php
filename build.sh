@@ -6,12 +6,12 @@ if [[ -z "$1" ]]; then
 fi
 
 if [[ -z "$2" ]]; then
-    echo "Provide a tag version as second argument (eg. magento)"
+    echo "Provide a tag version as second argument (eg. drupal)"
     exit 1
 fi
 
 if [[ -z "$3" ]]; then
-    echo "Provide a valid php version as third argument (7.1 7.2 7.3)"
+    echo "Provide a valid php version as third argument (7.1 7.2 7.3 7.4)"
     exit 1
 fi
 
