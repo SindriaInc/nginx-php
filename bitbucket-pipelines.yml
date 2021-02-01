@@ -72,7 +72,7 @@ pipelines:
             - echo -e "${BLUE}Cleaning local registry...${NC}"
             - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-local
             - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-production
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-lcoal
+            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-local
             - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-production
             - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-local
             - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-production
