@@ -1,7 +1,7 @@
 # Extends nginx-php base image
 ARG TAG_SUFFIX
 ARG TAG_ENV
-FROM sindriainc/nginx-php:latest-${TAG_SUFFIX}-${TAG_ENV}
+FROM sindriainc/nginx-php:2.0.0-${TAG_SUFFIX}-${TAG_ENV}
 
 ARG TAG_VERSION
 ARG HOST_USER_UID

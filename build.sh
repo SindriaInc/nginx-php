@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
 if [[ -z "$1" ]]; then
-    echo "Provide user UID"
+    echo "Provide image name as first argument (eg. sindriainc/<repo-slug>)"
     exit 1
 fi
 
 if [[ -z "$2" ]]; then
-    echo "Provide a tag version as second argument (eg. 1.0.0)"
+    echo "Provide a tag version as second argument (eg. magento)"
     exit 1
 fi
 
-
 if [[ -z "$3" ]]; then
-    echo "Provide a valid php version as third argument (5.6 7.0 7.1 7.2 7.3 7.4)"
+    echo "Provide a valid php version as third argument (7.1 7.2 7.3)"
     exit 1
 fi
 
@@ -21,12 +20,12 @@ if [[ -z "$4" ]]; then
     exit 1
 fi
 
-IMAGE_NAME="sindriainc/nginx-php"
-
-HOST_USER_UID=$1
+IMAGE_NAME=$1
 TAG_VERSION=$2
 TAG_SUFFIX=$3
 TAG_ENV=$4
+
+HOST_USER_UID=1000
 TIMEZONE=Europe/Rome
 
 docker build ./src \
