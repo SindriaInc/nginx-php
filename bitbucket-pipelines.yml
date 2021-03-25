@@ -2,7 +2,7 @@ image: sindriainc/image-builder:latest
 
 pipelines:
   branches:
-    drupal:
+    wordpress:
       - step:
           name: Build Image
           script:
