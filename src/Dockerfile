@@ -2,6 +2,7 @@ ARG TAG_SUFFIX
 FROM sindriainc/php:1.0.0-${TAG_SUFFIX}
 
 ARG TAG_VERSION
+ARG TAG_SUFFIX
 ARG HOST_USER_UID
 ARG TIMEZONE
 
@@ -20,12 +21,17 @@ ENV PHP_PM_MAX_CHILDREN=16
 
 # Install packages
 RUN apk add \
+    supervisor \
     nginx && \
-    docker-php-ext-install \
-    fpm && \
-    docker-php-ext-enable \
-    fpm && \
     rm -rf /var/cache/apk/*
+
+# Install fpm
+COPY resources/php/install.sh ${SINDRIA_USER_HOME}
+RUN bash ${SINDRIA_USER_HOME}/install.sh ${PHP_VERSION} && \
+    rm -rf ${SINDRIA_USER_HOME}/install.sh && \
+    rm -rf /var/cache/apk/*
+
+ENV PHP_MAJOR_VERSION=${MAJOR_VERSION}
 
 # Nginx configuration
 RUN mkdir -p /run/nginx && \
@@ -33,22 +39,23 @@ RUN mkdir -p /run/nginx && \
     mkdir -p /etc/nginx/sites-enabled
 COPY resources/nginx/nginx.conf /etc/nginx/
 COPY resources/nginx/conf.d/*.conf /etc/nginx/conf.d/
-COPY resources/nginx/sites-enabled/app.conf /etc/nginx/sites-enabled/
+COPY resources/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 
-# PHP configuration
-# Create a symlink for php-fpm executable and removing www fpm pools
-RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
+# PHP-FPM configuration
+RUN ln -s /usr/sbin/php-fpm${PHP_MAJOR_VERSION} /usr/sbin/php-fpm && \
     mkdir -p /run/php/ && \
-    chown ${SINDRIA_USER}:root /run/php/ && \
-    rm /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
-COPY resources/php/fpm/pool.d/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
+    chown ${SINDRIA_USER}:root /run/php/
+COPY resources/php/fpm/pool.d/sindria.conf /etc/php${PHP_MAJOR_VERSION}/php-fpm.d/sindria.conf
 
-## Supervisor configuration
-#COPY resources/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-#COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+# Supervisor configuration
+COPY resources/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
 
 # Add and execute startup command
 COPY startup.sh /startup.sh
 CMD ["/bin/bash", "/startup.sh"]
 
 EXPOSE 80
+
+# Configure a healthcheck to validate that everything is up&running
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:80/fpm-ping
