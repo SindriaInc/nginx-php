@@ -1,21 +1,21 @@
 # Nginx PHP
 
-This set of images can be used with PHP project from version 5.6 to 7.4.
+This set of images can be used with PHP project from version 7.0 to 8.
 
 Available images:
 
-- sindriainc/nginx-php:2.0.0-5.6-local
-- sindriainc/nginx-php:2.0.0-5.6-production
-- sindriainc/nginx-php:2.0.0-7.0-local
-- sindriainc/nginx-php:2.0.0-7.0-production
-- sindriainc/nginx-php:2.0.0-7.1-local
-- sindriainc/nginx-php:2.0.0-7.1-production
-- sindriainc/nginx-php:2.0.0-7.2-local
-- sindriainc/nginx-php:2.0.0-7.2-production
-- sindriainc/nginx-php:2.0.0-7.3-local
-- sindriainc/nginx-php:2.0.0-7.3-production
-- sindriainc/nginx-php:2.0.0-7.4-local
-- sindriainc/nginx-php:2.0.0-7.4-production
+- sindriainc/nginx-php:3.0.0-7.0
+- sindriainc/nginx-php:local-7.0
+- sindriainc/nginx-php:3.0.0-7.1
+- sindriainc/nginx-php:local-7.1
+- sindriainc/nginx-php:3.0.0-7.2
+- sindriainc/nginx-php:local-7.2
+- sindriainc/nginx-php:3.0.0-7.3
+- sindriainc/nginx-php:local-7.3
+- sindriainc/nginx-php:3.0.0-7.4
+- sindriainc/nginx-php:local-7.4
+- sindriainc/nginx-php:3.0.0-8
+- sindriainc/nginx-php:local-8
 
 ### Installation & Configuration
 
