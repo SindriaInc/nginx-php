@@ -1,5 +1,5 @@
 ARG TAG_SUFFIX
-FROM sindriainc/php:1.0.0-${TAG_SUFFIX}
+FROM sindriainc/nginx-php:3.0.0-${TAG_SUFFIX}
 
 ARG TAG_VERSION
 ARG TAG_SUFFIX
@@ -18,42 +18,41 @@ ENV SINDRIA_USER="sindria"
 ENV SINDRIA_USER_HOME="/home/sindria"
 ENV PHP_VERSION=${TAG_SUFFIX}
 ENV PHP_PM_MAX_CHILDREN=16
+ENV PHP_XDEBUG_MODE debug
+ENV PHP_XDEBUG_START_WITH_REQUEST yes
+ENV PHP_XDEBUG_HOST docker.host.internal
+ENV PHP_XDEBUG_PORT 9000
+ENV PHP_XDEBUG_IDE_KEY PHPSTORM
 
-# Install packages
-RUN apk add \
-    supervisor \
-    nginx && \
+# Update and install packages
+RUN apk update && \
+    apk add \
+    wget \
+    vim \
+    unzip \
+    git \
+    rsync && \
     rm -rf /var/cache/apk/*
 
-# Install fpm
-COPY resources/php/fpm/pool.d/sindria.conf ${SINDRIA_USER_HOME}
-COPY resources/php/install.sh ${SINDRIA_USER_HOME}
-RUN bash ${SINDRIA_USER_HOME}/install.sh ${PHP_VERSION} && \
-    rm -rf ${SINDRIA_USER_HOME}/install.sh && \
-    rm -rf ${SINDRIA_USER_HOME}/sindria.conf && \
-    rm -rf /var/cache/apk/*
+# Install dev tools
+RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
+    pecl install xdebug-3.0.0 || pecl install xdebug-2.6.0 && \
+    docker-php-ext-enable xdebug && \
+    apk del -f .build-deps && \
+    echo "xdebug.mode=${PHP_XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.start_with_request=${PHP_XDEBUG_START_WITH_REQUEST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.client_host=${PHP_XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.client_port=${PHP_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.idekey=${PHP_XDEBUG_IDE_KEY}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    touch /var/log/xdebug.log && \
+    curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && \
+    chmod +x /usr/local/bin/php-cs-fixer && \
+    curl -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o /usr/local/bin/phpcs && \
+    curl -L https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar -o /usr/local/bin/phpcbf && \
+    chmod +x /usr/local/bin/phpcs && \
+    chmod +x /usr/local/bin/phpcbf
 
-# Nginx configuration
-RUN mkdir -p /run/nginx && \
-    rm -rf /etc/nginx/conf.d/default.conf && \
-    mkdir -p /etc/nginx/sites-enabled
-COPY resources/nginx/nginx.conf /etc/nginx/
-COPY resources/nginx/conf.d/*.conf /etc/nginx/conf.d/
-COPY resources/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
-
-# Supervisor configuration
-COPY resources/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
-RUN mkdir -p /var/log/supervisor && \
-    touch /var/log/supervisor/supervisord.log
-
-ENTRYPOINT [""]
-
-# Add and execute startup command
-COPY startup.sh /startup.sh
-CMD ["/bin/bash", "/startup.sh"]
-
-EXPOSE 80
-
-# Configure a healthcheck to validate that everything is up&running
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:80/fpm-ping
+#USER ${SINDRIA_USER}
