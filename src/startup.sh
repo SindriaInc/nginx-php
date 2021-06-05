@@ -7,16 +7,11 @@ echo -e "\n# Hostname for gateway" >> /etc/hosts
 echo -e "${CONTAINER_GATEWAY}\tdocker.host.internal\n" >> /etc/hosts
 
 # Adding variables to php-fpm pool configuration
-sed -i -E "s|\[@@POOL_NAME@@\]|\[${HOSTNAME}-php-fpm-pool\]|g" /etc/php${PHP_MAJOR_VERSION}/php-fpm.d/sindria.conf
+sed -i -E "s|\[@@POOL_NAME@@\]|\[${HOSTNAME}-php-fpm-pool\]|g" /etc/php/php-fpm.d/sindria.conf
 
 # Change max children php-fpm pool configuration
 if [ "${PHP_PM_MAX_CHILDREN}" != "16" ]; then
-    sed -i -E "s|pm.max_children = ([0-9]+)|pm.max_children = ${PHP_PM_MAX_CHILDREN}|g" /etc/php${PHP_MAJOR_VERSION}/php-fpm.d/sindria.conf
-fi
-
-# Override xdebug ide key
-if [ "${PHP_XDEBUG_IDE_KEY}" != "PHPSTORM" ]; then
-    sed -i -E "s|PHPSTORM|${PHP_XDEBUG_IDE_KEY}|g" /etc/php${PHP_MAJOR_VERSION}/conf.d/20-xdebug.ini
+    sed -i -E "s|pm.max_children = ([0-9]+)|pm.max_children = ${PHP_PM_MAX_CHILDREN}|g" /etc/php/php-fpm.d/sindria.conf
 fi
 
 # Override nginx virtualhost configuration

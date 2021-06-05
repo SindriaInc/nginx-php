@@ -26,9 +26,11 @@ RUN apk add \
     rm -rf /var/cache/apk/*
 
 # Install fpm
+COPY resources/php/fpm/pool.d/sindria.conf ${SINDRIA_USER_HOME}
 COPY resources/php/install.sh ${SINDRIA_USER_HOME}
 RUN bash ${SINDRIA_USER_HOME}/install.sh ${PHP_VERSION} && \
     rm -rf ${SINDRIA_USER_HOME}/install.sh && \
+    rm -rf ${SINDRIA_USER_HOME}/sindria.conf && \
     rm -rf /var/cache/apk/*
 
 ENV PHP_MAJOR_VERSION=${MAJOR_VERSION}
@@ -41,15 +43,13 @@ COPY resources/nginx/nginx.conf /etc/nginx/
 COPY resources/nginx/conf.d/*.conf /etc/nginx/conf.d/
 COPY resources/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 
-# PHP-FPM configuration
-RUN ln -s /usr/sbin/php-fpm${PHP_MAJOR_VERSION} /usr/sbin/php-fpm && \
-    mkdir -p /run/php/ && \
-    chown ${SINDRIA_USER}:root /run/php/
-COPY resources/php/fpm/pool.d/sindria.conf /etc/php${PHP_MAJOR_VERSION}/php-fpm.d/sindria.conf
-
 # Supervisor configuration
 COPY resources/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+RUN mkdir -p /var/log/supervisor && \
+    touch /var/log/supervisor/supervisord.log
+
+ENTRYPOINT [""]
 
 # Add and execute startup command
 COPY startup.sh /startup.sh
