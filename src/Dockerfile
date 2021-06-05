@@ -42,9 +42,9 @@ RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
     rm /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 COPY resources/php/fpm/pool.d/sindria.conf /etc/php/${PHP_VERSION}/fpm/pool.d/sindria.conf
 
-# Supervisor configuration
-COPY resources/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+## Supervisor configuration
+#COPY resources/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+#COPY resources/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
 
 # Add and execute startup command
 COPY startup.sh /startup.sh
