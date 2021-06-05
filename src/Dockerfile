@@ -33,8 +33,6 @@ RUN bash ${SINDRIA_USER_HOME}/install.sh ${PHP_VERSION} && \
     rm -rf ${SINDRIA_USER_HOME}/sindria.conf && \
     rm -rf /var/cache/apk/*
 
-ENV PHP_MAJOR_VERSION=${MAJOR_VERSION}
-
 # Nginx configuration
 RUN mkdir -p /run/nginx && \
     rm -rf /etc/nginx/conf.d/default.conf && \
