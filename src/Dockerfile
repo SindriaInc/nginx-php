@@ -24,7 +24,8 @@ RUN apk add \
     docker-php-ext-install \
     fpm && \
     docker-php-ext-enable \
-    fpm
+    fpm && \
+    rm -rf /var/cache/apk/*
 
 # Nginx configuration
 RUN mkdir -p /run/nginx && \
