@@ -12,6 +12,7 @@ LABEL \
 	tag="${TAG_VERSION}-${TAG_SUFFIX}" \
 	vendor="sindria"
 
+ENV PATH "/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/sindria/.local/bin"
 ENV HOST_USER_UID ${HOST_USER_UID}
 ENV TZ=${TIMEZONE}
 ENV SINDRIA_USER="sindria"
