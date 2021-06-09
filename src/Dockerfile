@@ -1,19 +1,18 @@
 # Extends nginx-php base image
 ARG TAG_SUFFIX
-ARG TAG_ENV
-FROM sindriainc/nginx-php:2.0.0-${TAG_SUFFIX}-${TAG_ENV}
+FROM sindriainc/nginx-php:3.0.0-${TAG_SUFFIX}
 
 ARG TAG_VERSION
+ARG TAG_SUFFIX
 ARG HOST_USER_UID
 ARG TIMEZONE
 
 LABEL \
 	name="sindriainc/nginx-php" \
 	image="nginx-php" \
-	tag="${TAG_VERSION}-${TAG_SUFFIX}-${TAG_ENV}" \
+	tag="${TAG_VERSION}-${TAG_SUFFIX}" \
 	vendor="sindria"
 
-ENV DEBIAN_FRONTEND="noninteractive"
 ENV HOST_USER_UID ${HOST_USER_UID}
 ENV TZ=${TIMEZONE}
 ENV SINDRIA_USER="sindria"
