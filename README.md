@@ -1,6 +1,6 @@
 # Nginx PHP - Magento
 
-This set of images can be used with PHP project from version 7.1 to 7.3.
+This set of images can be used with PHP project from version 7.1 to 7.3
 
 Available images:
 
