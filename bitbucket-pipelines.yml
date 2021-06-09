@@ -2,7 +2,7 @@ image: sindriainc/pipeline:latest
 
 pipelines:
   branches:
-    wordpress:
+    local-wordpress:
       - step:
           name: Build and Publish Image
           script:
