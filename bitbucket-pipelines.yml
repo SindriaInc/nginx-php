@@ -1,83 +1,17 @@
-image: sindriainc/image-builder:latest
+image: sindriainc/pipeline:latest
 
 pipelines:
   branches:
     drupal:
       - step:
-          name: Build Image
+          name: Build and Publish Image
           script:
-            - echo -e "${BLUE}Building image...${NC}"
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.1 local
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.1 production
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.2 local
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.2 production
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.3 local
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.3 production
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.4 local
-            - bash build.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH} 7.4 production
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-local --output "${BITBUCKET_REPO_SLUG}-7.1-local.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-production --output "${BITBUCKET_REPO_SLUG}-7.1-production.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-local --output "${BITBUCKET_REPO_SLUG}-7.2-local.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-production --output "${BITBUCKET_REPO_SLUG}-7.2-production.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-local --output "${BITBUCKET_REPO_SLUG}-7.3-local.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-production --output "${BITBUCKET_REPO_SLUG}-7.3-production.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-local --output "${BITBUCKET_REPO_SLUG}-7.4-local.tar"
-            - docker save ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-production --output "${BITBUCKET_REPO_SLUG}-7.4-production.tar"
-            - cowsay -f tux "Build Success"
+            - echo -e "${BLUE}Login into registry...${NC}"
+            - echo ${DOCKERHUB_PASSWORD} | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
+            - echo -e "${BLUE}Building and publishing image...${NC}"
+            - bash build_all.sh ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG} ${BITBUCKET_BRANCH}
+            - cowsay -f tux "Build and Publish Image"
           services:
             - docker
           caches:
-            - docker
-          artifacts:
-            - "*.tar"
-            - "*.tar"
-            - "*.tar"
-            - "*.tar"
-            - "*.tar"
-            - "*.tar"
-            - "*.tar"
-            - "*.tar"  
-      - step:
-          name: Push Image
-          script:
-            - echo -e "${BLUE}Loading cached image...${NC}"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.1-local.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.1-production.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.2-local.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.2-production.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.3-local.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.3-production.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.4-local.tar"
-            - docker load --input "${BITBUCKET_REPO_SLUG}-7.4-production.tar"
-            - echo -e "${BLUE}Tagging cached image...${NC}"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-local" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-local"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-production" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-production"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-local" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-local"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-production" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-production"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-local" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-local"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-production" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-production"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-local" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-local"
-            - docker tag "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-production" "${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-production"
-            - echo -e "${BLUE}Login into registry...${NC}"
-            - echo ${DOCKERHUB_PASSWORD} | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
-            - echo -e "${BLUE}Pushing image into registry...${NC}"
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-local
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-production
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-local
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-production
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-local
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-production
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-local
-            - docker push ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-production
-            - echo -e "${BLUE}Cleaning local registry...${NC}"
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-local
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.1-production
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-local
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.2-production
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-local
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.3-production
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-local
-            - docker image rm ${DOCKERHUB_NAMESPACE}/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BRANCH}-7.4-production
-            - cowsay -f dragon "Well Done! New docker image is now on your registry."
-          services:
             - docker
