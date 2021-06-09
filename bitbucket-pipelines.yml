@@ -2,7 +2,7 @@ image: sindriainc/pipeline:latest
 
 pipelines:
   branches:
-    drupal:
+    local-drupal:
       - step:
           name: Build and Publish Image
           script:
