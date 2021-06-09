@@ -15,11 +15,6 @@ if [[ -z "$3" ]]; then
     exit 1
 fi
 
-if [[ -z "$4" ]]; then
-    echo "Provide a tag env as fourth argument (local or production)"
-    exit 1
-fi
-
 IMAGE_NAME=$1
 TAG_VERSION=$2
 TAG_SUFFIX=$3
