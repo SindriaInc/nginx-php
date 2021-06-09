@@ -4,12 +4,12 @@ This set of images can be used with PHP project from version 7.1 to 7.3.
 
 Available images:
 
-- sindriainc/nginx-php:magento-7.1-local
-- sindriainc/nginx-php:magento-7.1-production
-- sindriainc/nginx-php:magento-7.2-local
-- sindriainc/nginx-php:magento-7.2-production
-- sindriainc/nginx-php:magento-7.3-local
-- sindriainc/nginx-php:magento-7.3-production
+- sindriainc/nginx-php:magento-7.1
+- sindriainc/nginx-php:local-magento-7.1
+- sindriainc/nginx-php:magento-7.2
+- sindriainc/nginx-php:local-magento-7.2
+- sindriainc/nginx-php:magento-7.3
+- sindriainc/nginx-php:local-magento-7.3
 
 Legacy images:
 
