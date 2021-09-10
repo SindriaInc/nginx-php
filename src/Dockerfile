@@ -1,5 +1,5 @@
 ARG TAG_SUFFIX
-FROM sindriainc/nginx-php:3.0.0-${TAG_SUFFIX}
+FROM sindriainc/nginx-php:3.1.0-${TAG_SUFFIX}
 
 ARG TAG_VERSION
 ARG TAG_SUFFIX
