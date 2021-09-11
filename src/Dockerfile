@@ -1,5 +1,5 @@
 ARG TAG_SUFFIX
-FROM sindriainc/nginx-php:3.2.0-${TAG_SUFFIX}
+FROM sindriainc/nginx-php:4.0.0-${TAG_SUFFIX}
 
 ARG TAG_VERSION
 ARG TAG_SUFFIX
@@ -34,20 +34,11 @@ RUN apk update && \
     rsync && \
     rm -rf /var/cache/apk/*
 
-#USER ${SINDRIA_USER}
-
-# Install composer for sindria user
-#RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
-#    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-#USER root
-
 # Install dev tools
 RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS $PECL_DEPS && \
     pecl install xdebug-3.0.0 || pecl install xdebug-2.6.0 && \
-    #ocker-php-ext-enable xdebug && \
     apk del -f .build-deps && \
     touch /etc/php/conf.d/xdebug.ini && \
     echo "xdebug.mode=${PHP_XDEBUG_MODE}" >> /etc/php/conf.d/xdebug.ini && \
