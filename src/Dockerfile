@@ -1,5 +1,5 @@
 ARG TAG_SUFFIX
-FROM sindriainc/nginx-php:3.1.0-${TAG_SUFFIX}
+FROM sindriainc/nginx-php:3.2.0-${TAG_SUFFIX}
 
 ARG TAG_VERSION
 ARG TAG_SUFFIX
@@ -34,19 +34,28 @@ RUN apk update && \
     rsync && \
     rm -rf /var/cache/apk/*
 
+#USER ${SINDRIA_USER}
+
+# Install composer for sindria user
+#RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
+#    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+#USER root
+
 # Install dev tools
 RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
+    apk add --no-cache --virtual .build-deps $PHPIZE_DEPS $PECL_DEPS && \
     pecl install xdebug-3.0.0 || pecl install xdebug-2.6.0 && \
-    docker-php-ext-enable xdebug && \
+    #ocker-php-ext-enable xdebug && \
     apk del -f .build-deps && \
-    echo "xdebug.mode=${PHP_XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.start_with_request=${PHP_XDEBUG_START_WITH_REQUEST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.client_host=${PHP_XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.client_port=${PHP_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.idekey=${PHP_XDEBUG_IDE_KEY}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    touch /etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.mode=${PHP_XDEBUG_MODE}" >> /etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.start_with_request=${PHP_XDEBUG_START_WITH_REQUEST}" >> /etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.client_host=${PHP_XDEBUG_HOST}" >> /etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.client_port=${PHP_XDEBUG_PORT}" >> /etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.idekey=${PHP_XDEBUG_IDE_KEY}" >> /etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.log=/var/log/xdebug.log" >> /etc/php/conf.d/xdebug.ini && \
     touch /var/log/xdebug.log && \
     curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && \
     chmod +x /usr/local/bin/php-cs-fixer && \
