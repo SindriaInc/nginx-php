@@ -26,3 +26,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Nginx configuration
 COPY resources/nginx/sites-available/app.conf /etc/nginx/sites-enabled/app.conf
+
+# PHP ini
+RUN sed -i -E "s|upload_max_filesize = 2M|upload_max_filesize = 8M|g" /etc/php7/php.ini
