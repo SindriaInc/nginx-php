@@ -28,47 +28,45 @@ _General Purpose_
 
 _Magento_
 
-- sindriainc/nginx-php:5.0.0-7.1
-- sindriainc/nginx-php:5.0.0-local-7.1
-- sindriainc/nginx-php:5.0.0-7.2
-- sindriainc/nginx-php:5.0.0-local-7.2
-- sindriainc/nginx-php:5.0.0-7.3
-- sindriainc/nginx-php:5.0.0-local-7.3
-- sindriainc/nginx-php:5.0.0-7.4
-- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-magento-7.1
+- sindriainc/nginx-php:5.0.0-local-magento-7.1
+- sindriainc/nginx-php:5.0.0-magento-7.2
+- sindriainc/nginx-php:5.0.0-local-magento-7.2
+- sindriainc/nginx-php:5.0.0-magento-7.3
+- sindriainc/nginx-php:5.0.0-local-magento-7.3
 
 _Drupal_
 
-- sindriainc/nginx-php:5.0.0-7.1
-- sindriainc/nginx-php:5.0.0-local-7.1
-- sindriainc/nginx-php:5.0.0-7.2
-- sindriainc/nginx-php:5.0.0-local-7.2
-- sindriainc/nginx-php:5.0.0-7.3
-- sindriainc/nginx-php:5.0.0-local-7.3
-- sindriainc/nginx-php:5.0.0-7.4
-- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-drupal-7.1
+- sindriainc/nginx-php:5.0.0-local-drupal-7.1
+- sindriainc/nginx-php:5.0.0-drupal-7.2
+- sindriainc/nginx-php:5.0.0-local-drupal-7.2
+- sindriainc/nginx-php:5.0.0-drupal-7.3
+- sindriainc/nginx-php:5.0.0-local-drupal-7.3
+- sindriainc/nginx-php:5.0.0-drupal-7.4
+- sindriainc/nginx-php:5.0.0-local-drupal-7.4
 
 _WordPress_
 
-- sindriainc/nginx-php:5.0.0-7.1
-- sindriainc/nginx-php:5.0.0-local-7.1
-- sindriainc/nginx-php:5.0.0-7.2
-- sindriainc/nginx-php:5.0.0-local-7.2
-- sindriainc/nginx-php:5.0.0-7.3
-- sindriainc/nginx-php:5.0.0-local-7.3
-- sindriainc/nginx-php:5.0.0-7.4
-- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-wordpress-7.1
+- sindriainc/nginx-php:5.0.0-local-wordpress-7.1
+- sindriainc/nginx-php:5.0.0-wordpress-7.2
+- sindriainc/nginx-php:5.0.0-local-wordpress-7.2
+- sindriainc/nginx-php:5.0.0-wordpress-7.3
+- sindriainc/nginx-php:5.0.0-local-wordpress-7.3
+- sindriainc/nginx-php:5.0.0-wordpress-7.4
+- sindriainc/nginx-php:5.0.0-local-wordpress-7.4
 
 _SuiteCRM_
 
-- sindriainc/nginx-php:5.0.0-7.1
-- sindriainc/nginx-php:5.0.0-local-7.1
-- sindriainc/nginx-php:5.0.0-7.2
-- sindriainc/nginx-php:5.0.0-local-7.2
-- sindriainc/nginx-php:5.0.0-7.3
-- sindriainc/nginx-php:5.0.0-local-7.3
-- sindriainc/nginx-php:5.0.0-7.4
-- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-suitecrm-7.1
+- sindriainc/nginx-php:5.0.0-local-suitecrm-7.1
+- sindriainc/nginx-php:5.0.0-suitecrm-7.2
+- sindriainc/nginx-php:5.0.0-local-suitecrm-7.2
+- sindriainc/nginx-php:5.0.0-suitecrm-7.3
+- sindriainc/nginx-php:5.0.0-local-suitecrm-7.3
+- sindriainc/nginx-php:5.0.0-suitecrm-7.4
+- sindriainc/nginx-php:5.0.0-local-suitecrm-7.4
 
 ### Installation & Configuration
 
