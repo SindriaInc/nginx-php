@@ -1,5 +1,6 @@
+ARG ARCH
 ARG TAG_SUFFIX
-FROM sindriainc/nginx-php:4.0.2-${TAG_SUFFIX}
+FROM sindriainc/nginx-php:5.0.0-${TAG_SUFFIX}-${ARCH}
 
 ARG TAG_VERSION
 ARG TAG_SUFFIX
@@ -41,6 +42,8 @@ RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
     pecl install xdebug-3.0.0 || pecl install xdebug-2.6.0 && \
     apk del -f .build-deps && \
     touch /etc/php/conf.d/xdebug.ini && \
+    echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php/conf.d/xdebug.ini && \
+    echo "" >> /etc/php/conf.d/xdebug.ini && \
     echo "xdebug.mode=${PHP_XDEBUG_MODE}" >> /etc/php/conf.d/xdebug.ini && \
     echo "xdebug.start_with_request=${PHP_XDEBUG_START_WITH_REQUEST}" >> /etc/php/conf.d/xdebug.ini && \
     echo "xdebug.client_host=${PHP_XDEBUG_HOST}" >> /etc/php/conf.d/xdebug.ini && \
