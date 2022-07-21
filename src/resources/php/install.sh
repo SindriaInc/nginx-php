@@ -50,7 +50,16 @@ case ${PHP_VERSION} in
         cp ${SINDRIA_USER_HOME}/sindria.conf /etc/php7/php-fpm.d/sindria.conf
         chown ${SINDRIA_USER}:root /run/php/
         ;;
-    8)
+    8.0)
+        apk add php8-fpm
+        ln -s /usr/sbin/php-fpm8 /usr/sbin/php-fpm
+        ln -s /etc/php8 /etc/php
+        mkdir -p /run/php/
+        rm /etc/php8/php-fpm.d/www.conf
+        cp ${SINDRIA_USER_HOME}/sindria.conf /etc/php8/php-fpm.d/sindria.conf
+        chown ${SINDRIA_USER}:root /run/php/
+        ;;
+    8.1)
         apk add php8-fpm
         ln -s /usr/sbin/php-fpm8 /usr/sbin/php-fpm
         ln -s /etc/php8 /etc/php

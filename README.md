@@ -1,21 +1,100 @@
 # Nginx PHP
 
-This set of images can be used with PHP project from version 7.0 to 8.
+Sindria Base Image based on official alpine base image.
 
-Available images:
+## Platforms
 
-- sindriainc/nginx-php:3.0.0-7.0
-- sindriainc/nginx-php:local-7.0
-- sindriainc/nginx-php:3.0.0-7.1
-- sindriainc/nginx-php:local-7.1
-- sindriainc/nginx-php:3.0.0-7.2
-- sindriainc/nginx-php:local-7.2
-- sindriainc/nginx-php:3.0.0-7.3
-- sindriainc/nginx-php:local-7.3
-- sindriainc/nginx-php:3.0.0-7.4
-- sindriainc/nginx-php:local-7.4
-- sindriainc/nginx-php:3.0.0-8
-- sindriainc/nginx-php:local-8
+- amd64
+- arm64
+
+This set of images can be used with PHP project from version 7.0 to 8.1.
+
+**Latest Tags:**
+
+_General Purpose_
+
+- sindriainc/nginx-php:5.0.0-7.0
+- sindriainc/nginx-php:5.0.0-local-7.0
+- sindriainc/nginx-php:5.0.0-7.1
+- sindriainc/nginx-php:5.0.0-local-7.1
+- sindriainc/nginx-php:5.0.0-7.2
+- sindriainc/nginx-php:5.0.0-local-7.2
+- sindriainc/nginx-php:5.0.0-7.3
+- sindriainc/nginx-php:5.0.0-local-7.3
+- sindriainc/nginx-php:5.0.0-7.4
+- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-8.0
+- sindriainc/nginx-php:5.0.0-local-8.0
+- sindriainc/nginx-php:5.0.0-8.1
+- sindriainc/nginx-php:5.0.0-local-8.1
+
+_Magento_
+
+- sindriainc/nginx-php:5.0.0-7.0
+- sindriainc/nginx-php:5.0.0-local-7.0
+- sindriainc/nginx-php:5.0.0-7.1
+- sindriainc/nginx-php:5.0.0-local-7.1
+- sindriainc/nginx-php:5.0.0-7.2
+- sindriainc/nginx-php:5.0.0-local-7.2
+- sindriainc/nginx-php:5.0.0-7.3
+- sindriainc/nginx-php:5.0.0-local-7.3
+- sindriainc/nginx-php:5.0.0-7.4
+- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-8.0
+- sindriainc/nginx-php:5.0.0-local-8.0
+- sindriainc/nginx-php:5.0.0-8.1
+- sindriainc/nginx-php:5.0.0-local-8.1
+
+_Drupal_
+
+- sindriainc/nginx-php:5.0.0-7.0
+- sindriainc/nginx-php:5.0.0-local-7.0
+- sindriainc/nginx-php:5.0.0-7.1
+- sindriainc/nginx-php:5.0.0-local-7.1
+- sindriainc/nginx-php:5.0.0-7.2
+- sindriainc/nginx-php:5.0.0-local-7.2
+- sindriainc/nginx-php:5.0.0-7.3
+- sindriainc/nginx-php:5.0.0-local-7.3
+- sindriainc/nginx-php:5.0.0-7.4
+- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-8.0
+- sindriainc/nginx-php:5.0.0-local-8.0
+- sindriainc/nginx-php:5.0.0-8.1
+- sindriainc/nginx-php:5.0.0-local-8.1
+
+_WordPress_
+
+- sindriainc/nginx-php:5.0.0-7.0
+- sindriainc/nginx-php:5.0.0-local-7.0
+- sindriainc/nginx-php:5.0.0-7.1
+- sindriainc/nginx-php:5.0.0-local-7.1
+- sindriainc/nginx-php:5.0.0-7.2
+- sindriainc/nginx-php:5.0.0-local-7.2
+- sindriainc/nginx-php:5.0.0-7.3
+- sindriainc/nginx-php:5.0.0-local-7.3
+- sindriainc/nginx-php:5.0.0-7.4
+- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-8.0
+- sindriainc/nginx-php:5.0.0-local-8.0
+- sindriainc/nginx-php:5.0.0-8.1
+- sindriainc/nginx-php:5.0.0-local-8.1
+
+_SuiteCRM_
+
+- sindriainc/nginx-php:5.0.0-7.0
+- sindriainc/nginx-php:5.0.0-local-7.0
+- sindriainc/nginx-php:5.0.0-7.1
+- sindriainc/nginx-php:5.0.0-local-7.1
+- sindriainc/nginx-php:5.0.0-7.2
+- sindriainc/nginx-php:5.0.0-local-7.2
+- sindriainc/nginx-php:5.0.0-7.3
+- sindriainc/nginx-php:5.0.0-local-7.3
+- sindriainc/nginx-php:5.0.0-7.4
+- sindriainc/nginx-php:5.0.0-local-7.4
+- sindriainc/nginx-php:5.0.0-8.0
+- sindriainc/nginx-php:5.0.0-local-8.0
+- sindriainc/nginx-php:5.0.0-8.1
+- sindriainc/nginx-php:5.0.0-local-8.1
 
 ### Installation & Configuration
 
@@ -33,3 +112,7 @@ for deploying a new application.
 PHP version as `php.ini`
 - navigate to `config/nginx/sites`, open `app.conf` and update it according to your needs
 - if you have any cron job, you can add it to `config/cron.d/app`
+
+## Release
+
+Run utils script: `bash bin/release.sh <version>` eg. `bash bin/release.sh 1.0.0`
