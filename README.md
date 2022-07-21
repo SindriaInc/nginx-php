@@ -7,14 +7,12 @@ Sindria Base Image based on official alpine base image.
 - amd64
 - arm64
 
-This set of images can be used with PHP project from version 7.0 to 8.1.
+This set of images can be used with PHP project from version 7.1 to 8.1.
 
 **Latest Tags:**
 
 _General Purpose_
 
-- sindriainc/nginx-php:5.0.0-7.0
-- sindriainc/nginx-php:5.0.0-local-7.0
 - sindriainc/nginx-php:5.0.0-7.1
 - sindriainc/nginx-php:5.0.0-local-7.1
 - sindriainc/nginx-php:5.0.0-7.2
@@ -30,8 +28,6 @@ _General Purpose_
 
 _Magento_
 
-- sindriainc/nginx-php:5.0.0-7.0
-- sindriainc/nginx-php:5.0.0-local-7.0
 - sindriainc/nginx-php:5.0.0-7.1
 - sindriainc/nginx-php:5.0.0-local-7.1
 - sindriainc/nginx-php:5.0.0-7.2
@@ -40,15 +36,9 @@ _Magento_
 - sindriainc/nginx-php:5.0.0-local-7.3
 - sindriainc/nginx-php:5.0.0-7.4
 - sindriainc/nginx-php:5.0.0-local-7.4
-- sindriainc/nginx-php:5.0.0-8.0
-- sindriainc/nginx-php:5.0.0-local-8.0
-- sindriainc/nginx-php:5.0.0-8.1
-- sindriainc/nginx-php:5.0.0-local-8.1
 
 _Drupal_
 
-- sindriainc/nginx-php:5.0.0-7.0
-- sindriainc/nginx-php:5.0.0-local-7.0
 - sindriainc/nginx-php:5.0.0-7.1
 - sindriainc/nginx-php:5.0.0-local-7.1
 - sindriainc/nginx-php:5.0.0-7.2
@@ -57,15 +47,9 @@ _Drupal_
 - sindriainc/nginx-php:5.0.0-local-7.3
 - sindriainc/nginx-php:5.0.0-7.4
 - sindriainc/nginx-php:5.0.0-local-7.4
-- sindriainc/nginx-php:5.0.0-8.0
-- sindriainc/nginx-php:5.0.0-local-8.0
-- sindriainc/nginx-php:5.0.0-8.1
-- sindriainc/nginx-php:5.0.0-local-8.1
 
 _WordPress_
 
-- sindriainc/nginx-php:5.0.0-7.0
-- sindriainc/nginx-php:5.0.0-local-7.0
 - sindriainc/nginx-php:5.0.0-7.1
 - sindriainc/nginx-php:5.0.0-local-7.1
 - sindriainc/nginx-php:5.0.0-7.2
@@ -74,15 +58,9 @@ _WordPress_
 - sindriainc/nginx-php:5.0.0-local-7.3
 - sindriainc/nginx-php:5.0.0-7.4
 - sindriainc/nginx-php:5.0.0-local-7.4
-- sindriainc/nginx-php:5.0.0-8.0
-- sindriainc/nginx-php:5.0.0-local-8.0
-- sindriainc/nginx-php:5.0.0-8.1
-- sindriainc/nginx-php:5.0.0-local-8.1
 
 _SuiteCRM_
 
-- sindriainc/nginx-php:5.0.0-7.0
-- sindriainc/nginx-php:5.0.0-local-7.0
 - sindriainc/nginx-php:5.0.0-7.1
 - sindriainc/nginx-php:5.0.0-local-7.1
 - sindriainc/nginx-php:5.0.0-7.2
@@ -91,10 +69,6 @@ _SuiteCRM_
 - sindriainc/nginx-php:5.0.0-local-7.3
 - sindriainc/nginx-php:5.0.0-7.4
 - sindriainc/nginx-php:5.0.0-local-7.4
-- sindriainc/nginx-php:5.0.0-8.0
-- sindriainc/nginx-php:5.0.0-local-8.0
-- sindriainc/nginx-php:5.0.0-8.1
-- sindriainc/nginx-php:5.0.0-local-8.1
 
 ### Installation & Configuration
 
