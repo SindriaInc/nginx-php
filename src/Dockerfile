@@ -39,7 +39,7 @@ RUN apk update && \
 RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS $PECL_DEPS && \
-    pecl install xdebug-3.0.0 || pecl install xdebug-2.6.0 && \
+    pecl install xdebug-3.0.0 || pecl install xdebug-2.6.0 || true && \
     apk del -f .build-deps && \
     touch /etc/php/conf.d/xdebug.ini && \
     echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php/conf.d/xdebug.ini && \
