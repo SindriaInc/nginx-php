@@ -45,6 +45,10 @@ _Drupal_
 - sindriainc/nginx-php:5.0.0-local-drupal-7.3
 - sindriainc/nginx-php:5.0.0-drupal-7.4
 - sindriainc/nginx-php:5.0.0-local-drupal-7.4
+- sindriainc/nginx-php:5.0.0-drupal-8.0
+- sindriainc/nginx-php:5.0.0-local-drupal-8.0
+- sindriainc/nginx-php:5.0.0-drupal-8.1
+- sindriainc/nginx-php:5.0.0-local-drupal-8.1
 
 _WordPress_
 
