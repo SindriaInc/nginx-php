@@ -1,6 +1,7 @@
 # Extends nginx-php base image
+ARG ARCH
 ARG TAG_SUFFIX
-FROM sindriainc/nginx-php:local-${TAG_SUFFIX}
+FROM sindriainc/nginx-php:5.0.0-local-${TAG_SUFFIX}-${ARCH}
 
 ARG TAG_VERSION
 ARG TAG_SUFFIX
