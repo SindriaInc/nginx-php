@@ -1,6 +1,6 @@
 # *WARNING REPOSITORY ARCHIVED*
 
-### The source code has been move [here](https://github.com/SindriaInc/XPipe/tree/master/BaseImages/nginx-php)
+### The source code has been moved [here](https://github.com/SindriaInc/XPipe/tree/master/BaseImages/nginx-php)
 
 
 
