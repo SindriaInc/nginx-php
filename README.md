@@ -1,4 +1,6 @@
-*REPOSITORY ARCHIVIED*
+# WARNING *REPOSITORY ARCHIVIED*
+
+# The source code has been move [here](https://github.com/SindriaInc/XPipe/tree/master/BaseImages/nginx-php)
 
 
 
